@@ -1,0 +1,23 @@
+a {
+  color: black;
+}
+
+footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 3em;
+}
+
+.footer_logo img {
+  width: 200px;
+  mix-blend-mode: multiply;
+}
+
+.footer_message_text {
+  font-size: 1.4em;
+  padding: 20px;
+}
+
+.footer_socials {
+  margin-bottom: 1em;
+}

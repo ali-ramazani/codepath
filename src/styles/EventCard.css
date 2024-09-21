@@ -1,0 +1,85 @@
+@import url(https://fonts.googleapis.com/css?family=Oswald|Roboto|Slabo+27px);
+
+a {
+  color: hsl(0, 0%, 100%);
+}
+
+.card {
+  max-width: 30em;
+  margin: 15px;
+  background: #fff;
+  border: 1px solid #CB6074;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s;
+}
+
+.card:hover {
+  box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+.card-img {
+  position: relative;
+  text-align: center;
+  background: #CB6074;
+}
+
+.card-img img {
+  max-height: 180px;
+  width: 100%;
+  border-bottom: 4px solid #CB6074;
+  transition: opacity 0.3s;
+}
+
+.card-img:hover img {
+  opacity: 0.8;
+}
+
+.card-img h1 {
+  position: absolute;
+  bottom: 15px;
+  width: 100%;
+  color: #fff;
+  font-size: 30px;
+  font-family: 'Slabo 27px', serif;
+}
+
+.card-details {
+  margin-top: 30px;
+  font-family: 'Roboto', sans-serif;
+  color: #3C3C3C;
+  display: flex;
+}
+
+.icon {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.card-details span {
+  padding: 0 30px;
+}
+
+.card-text {
+  padding: 30px 15px;
+  font-family: 'Roboto', sans-serif;
+  line-height: 22px;
+}
+
+.read-more {
+  display: inline-block;
+  text-align: center;
+  text-transform: uppercase;
+  background: #CB6074;
+  color: #fff;
+  padding: 15px;
+  margin-bottom: 30px;
+  font-family: 'Oswald', sans-serif;
+  transition: background 0.3s;
+  cursor: pointer;
+}
+
+.read-more:hover {
+  background: #b04d5e;
+}

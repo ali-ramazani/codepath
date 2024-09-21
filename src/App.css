@@ -1,0 +1,16 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 62.5%;
+  background-color: #e7d8d8;
+}
+
+.container {
+  max-width: 120em;
+  height: 100vh;
+  padding-top: 5em;
+  margin: 0 auto;
+}
