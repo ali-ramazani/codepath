@@ -5,7 +5,7 @@
 }
 
 body {
-  font-size: 62.5%;
+  font-size: 62.5%; /* 1rem = 10px for easier rem calculations */
 }
 
 ul {
@@ -15,6 +15,7 @@ ul {
   margin-bottom: 1em;
   font-size: 2em;
   gap: 6em;
+  padding: 0;
 }
 
 a {
@@ -23,6 +24,7 @@ a {
   text-decoration: underline;
   text-decoration-color: #CB6074;
   text-underline-offset: 0.2em;
+  transition: color 0.3s ease;
 }
 
 a:hover {
@@ -39,6 +41,7 @@ img {
   justify-content: space-between;
   align-items: center;
   padding: 3em;
+  flex-wrap: wrap;
 }
 
 .logo {
@@ -47,15 +50,56 @@ img {
 }
 
 /* Media Queries */
+@media (max-width: 1024px) {
+  .header {
+    padding: 2em;
+  }
+
+  ul {
+    gap: 4em;
+    font-size: 1.8em;
+  }
+
+  .logo {
+    width: 150px;
+  }
+}
+
 @media (max-width: 768px) {
   ul {
     flex-direction: column;
+    align-items: center;
     gap: 2em;
+    font-size: 1.8em;
+  }
+
+  .header {
+    padding: 1.5em;
+  }
+
+  .logo {
+    width: 140px;
   }
 }
 
 @media (max-width: 480px) {
   ul {
     font-size: 1.6em;
+    gap: 1.5em;
+  }
+
+  .header {
+    padding: 1em;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .logo {
+    width: 120px;
+    margin-bottom: 1em;
+  }
+
+  a {
+    font-size: 1.4em;
   }
 }

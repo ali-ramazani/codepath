@@ -6,7 +6,7 @@ a {
 
 .card {
   max-width: 30em;
-  margin: 15px;
+  margin: 15px auto;
   background: #fff;
   border: 1px solid #CB6074;
   text-align: center;
@@ -50,6 +50,8 @@ a {
   font-family: 'Roboto', sans-serif;
   color: #3C3C3C;
   display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .icon {
@@ -82,4 +84,58 @@ a {
 
 .read-more:hover {
   background: #b04d5e;
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+  .card {
+    max-width: 25em;
+  }
+
+  .card-img h1 {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 992px) {
+  .card {
+    max-width: 22em;
+  }
+
+  .card-img h1 {
+    font-size: 25px;
+  }
+
+  .card-text {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    max-width: 20em;
+  }
+
+  .card-img h1 {
+    font-size: 22px;
+  }
+
+  .card-details span {
+    padding: 0 15px;
+  }
+}
+
+@media (max-width: 576px) {
+  .card {
+    max-width: 100%;
+    margin: 10px;
+  }
+
+  .card-img h1 {
+    font-size: 20px;
+  }
+
+  .read-more {
+    padding: 10px;
+  }
 }
