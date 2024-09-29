@@ -31,13 +31,14 @@ body::before {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 20px;
 }
 
 .flash_card_header {
   display: flex;
   flex-direction: column;
   margin-bottom: 50px;
-  max-width: 100em;
+  max-width: 100%;
 }
 
 .flash_card_header h1 {
@@ -57,20 +58,32 @@ body::before {
 
 .card-container {
   perspective: 1000px;
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  width: 100%;
 }
 
 .card {
   width: 60em;
-  height: 40em;
+  max-width: 100%; /* Ensure it scales down on smaller screens */
+  height: auto;
   position: relative;
   transition: transform 0.6s;
   transform-style: preserve-3d;
+  min-height: 40em;
+  display: flex;
+  justify-content: center; /* Center content inside the card */
+  align-items: center; /* Center content inside the card */
 }
 
 .card ul {
   list-style-type: none;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 40px;
+  padding: 0;
 }
 
 .card-front,
@@ -106,7 +119,7 @@ body::before {
 
 .card-back img {
   width: 60%;
-  height: 60%;
+  height: auto;
   object-fit: cover;
   margin-top: 2em;
 }
@@ -135,4 +148,58 @@ body::before {
   background-color: gray;
   padding: 5px;
   border-radius: 0.5em;
+}
+
+/* Media Queries for responsiveness */
+
+@media (max-width: 1024px) {
+  .flash_card_header h1 {
+    font-size: 3rem;
+  }
+
+  .flash_card_header h2 {
+    font-size: 2rem;
+  }
+
+  .card {
+    max-width: 80vw;
+  }
+
+  .card ul {
+    gap: 20px;
+  }
+
+  .right_arrow {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .flash_card_header h1 {
+    font-size: 2.5rem;
+  }
+
+  .flash_card_header h2 {
+    font-size: 1.8rem;
+  }
+
+  .flash_card_header p {
+    font-size: 1.4rem;
+  }
+
+  .card {
+    max-width: 90vw;
+    height: auto;
+    min-height: 30em;
+  }
+
+  .card-front,
+  .card-back {
+    font-size: 1.5rem;
+    padding: 5px;
+  }
+
+  .right_arrow {
+    font-size: 2.5rem;
+  }
 }

@@ -85,7 +85,7 @@ export const data = [
     options: ["Mate Attraction", "Defense"],
     answer_index: 1,
     answer: "Defense",
-    url: "https://images.dinosaurpictures.org/Primeval_Continued_Albertosaurus_promo_d158.jpg'"
+    url: "https://i.redd.it/vjrswfbmw9231.jpg"
   }
 ];
 
