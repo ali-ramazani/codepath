@@ -8,6 +8,8 @@ import { data } from "./data/data.js";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import Fuse from "fuse.js"; 
+
 function shuffleArray(array) {
   return array.sort(() => Math.random() - 0.5);
 }
@@ -18,6 +20,7 @@ function App() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
   const [guess, setGuess] = useState("");
+  const [correctCount, setCorrectCount] = useState(0);
 
   useEffect(() => {
     const shuffled = shuffleArray([...data]);
@@ -54,7 +57,21 @@ function App() {
     const correctAnswer = currentCard.answer.toLowerCase().trim();
     const userGuess = guess.toLowerCase().trim();
 
-    if (userGuess === correctAnswer) {
+    if (correctCount === shuffledData.length) {
+      setCorrectCount(0);
+    }
+
+    // setup for fuse.js options
+    const options = {
+      includeScore: true,
+      threshold: 0.3,
+    }
+
+    const fuse = new Fuse([correctAnswer], options);
+    const result = fuse.search(userGuess);
+
+    if (result.length > 0 && result[0].score <= 0.3) {
+      setCorrectCount((prevCount) => prevCount + 1);
       toast.success(`Correct! The answer is indeed ${correctAnswer}.`, {
         position: "top-center",
         autoClose: 3000,
@@ -96,6 +113,7 @@ function App() {
           questions and discover the ancient giants that ruled the Earth!
         </h2>
         <p>Number of Cards: {shuffledData.length}</p>
+        <p>Correct Answers: {correctCount}</p>
       </div>
 
       {shuffledData.length > 0 && (

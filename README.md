@@ -4,7 +4,8 @@ Submitted by: **Ali Ramazani**
 
 This web app: **This quizlet includes 10 questions about dinosaurs as well as answers to them. Questions are stored externally and can be added or removed with ease**
 
-Time spent: **2.5** hours spent in total
+Time spent: **2.5** hours spent in setting up basic functionality
+Time Spent: "2" hours spent in extending web functionality 
 
 ## Required Features
 
@@ -14,13 +15,18 @@ The following **required** functionality is completed:
 - [T] **A single card at a time is displayed, only showing one of the components of the information pair**
 - [T] **A list of card pairs is created**
 - [T] **Clicking on the card shows the corresponding component of the information pair**
-- [T] **Clicking the next button displays a random new card**
+- [T] **Clicking the next button displays next card**
+- [T] **Clicking the back button displays previous card**
+- [T] **A visual indicator, flash message, is displayed to notify user of the correct ness of their answer**
 
 The following **optional** features are implemented:
 
 - [T] Cards contains images in addition to or in place of text
 - [T] Cards have different visual styles such as color based on their category
   - [T] *visual style implemented*
+  - [T] *User's guess is fuzze matched with the correct answer to allow for spelling mistakes**
+  - [T] *Clicking the shuffle buttton shuffles the whole deck*
+- [T] *User can input their guess**
 
 ## Video Walkthrough
 
