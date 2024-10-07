@@ -6,7 +6,12 @@ const FlashCard = ({ data, questionNumber, isFlipped, setIsFlipped}) => {
     setIsFlipped(!isFlipped);
   };
 
+  if (!data) {
+    return <h1>Loading...</h1>;
+  }
+
   return (
+ 
     <div
       className={`card-container ${isFlipped ? "flipped" : ""}`}
       onClick={handleClick}

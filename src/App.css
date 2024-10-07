@@ -6,7 +6,7 @@
 
 body {
   font-family: 'Roboto', sans-serif;
-  font-size: 62.5%;
+  font-size: 62.5%; /* Base font size for rem units (1rem = 10px) */
   position: relative;
 }
 
@@ -25,18 +25,17 @@ body::before {
 
 .container {
   height: 100vh;
-  text-align: center;
+  max-width: 1200px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 20px;
+  text-align: center;
 }
 
 .flash_card_header {
-  display: flex;
-  flex-direction: column;
   margin-bottom: 50px;
   max-width: 100%;
 }
@@ -59,22 +58,22 @@ body::before {
 .card-container {
   perspective: 1000px;
   display: flex;
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
+  justify-content: center;
+  align-items: center;
   width: 100%;
 }
 
 .card {
   width: 60em;
-  max-width: 100%; /* Ensure it scales down on smaller screens */
+  max-width: 100%;
   height: auto;
   position: relative;
   transition: transform 0.6s;
   transform-style: preserve-3d;
   min-height: 40em;
   display: flex;
-  justify-content: center; /* Center content inside the card */
-  align-items: center; /* Center content inside the card */
+  justify-content: center;
+  align-items: center;
 }
 
 .card ul {
@@ -128,8 +127,9 @@ body::before {
   transform: rotateX(180deg);
 }
 
-.right_arrow {
+.right_arrow, .left_arrow, .shuffle_icon {
   font-size: 3.5em;
+  cursor: pointer;
 }
 
 .easy {
@@ -146,12 +146,17 @@ body::before {
 
 .navigation {
   background-color: gray;
-  padding: 5px;
+  padding: 10px;
   border-radius: 0.5em;
 }
 
-/* Media Queries for responsiveness */
+.navigation_div {
+  display: flex;
+  gap: 1em;
+  justify-content: center;
+}
 
+/* Media Queries for responsiveness */
 @media (max-width: 1024px) {
   .flash_card_header h1 {
     font-size: 3rem;
@@ -163,13 +168,14 @@ body::before {
 
   .card {
     max-width: 80vw;
+    min-height: 35em;
   }
 
   .card ul {
     gap: 20px;
   }
 
-  .right_arrow {
+  .right_arrow, .left_arrow, .shuffle_icon {
     font-size: 3rem;
   }
 }
@@ -189,7 +195,6 @@ body::before {
 
   .card {
     max-width: 90vw;
-    height: auto;
     min-height: 30em;
   }
 
@@ -199,7 +204,67 @@ body::before {
     padding: 5px;
   }
 
-  .right_arrow {
+  .right_arrow, .left_arrow, .shuffle_icon {
     font-size: 2.5rem;
   }
+}
+
+@media (max-width: 480px) {
+  .flash_card_header h1 {
+    font-size: 2rem;
+  }
+
+  .flash_card_header h2 {
+    font-size: 1.5rem;
+  }
+
+  .flash_card_header p {
+    font-size: 1.2rem;
+  }
+
+  .card {
+    max-width: 95vw;
+    min-height: 25em;
+  }
+
+  .card-front,
+  .card-back {
+    font-size: 1.3rem;
+    padding: 5px;
+  }
+
+  .right_arrow, .left_arrow, .shuffle_icon {
+    font-size: 2rem;
+  }
+}
+
+/* Form styling for better user experience */
+form {
+  margin: 20px 0;
+}
+
+form input {
+  padding: 10px;
+  margin: 10px;
+  border-radius: 0.5em;
+  border: 1px solid #ccc;
+  font-size: 1.6rem;
+  width: 80%;
+  max-width: 400px;
+}
+
+form button {
+  padding: 10px;
+  margin: 10px;
+  border-radius: 0.5em;
+  border: 1px solid #ccc;
+  background-color: #0099ff;
+  color: white;
+  font-size: 1.6rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: #007acc;
 }
