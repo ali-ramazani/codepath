@@ -1,6 +1,8 @@
-import React from 'react';
+import React from "react";
+import "../App.css";
+import "../index.css";
 
-function APIForm({inputs, handleChange, onSubmit}) {
+function APIForm({ inputs, handleChange, onSubmit }) {
   const inputsInfo = [
     "Input a link to any website you would like to take a screenshot of. Do not include https or any protocol in the URL",
     "Input which image format you would prefer for your screenshot: jpeg, png, or webp",
@@ -11,24 +13,34 @@ function APIForm({inputs, handleChange, onSubmit}) {
   ];
 
   return (
-    <div>
-      <h2>Select Your Image Attributes: </h2>
-      <form className="form-container">
+    <div className="form-div">
+      <h2 className="">Select Your Image Attributes: </h2>
+      <form
+        className="form-container"
+      >
         {inputs &&
-        Object.entries(inputs).map(([category, value], index) => (
-          <li className="form" key={index}>
-            <h2>{category}</h2>
-            <input type="text" name={category} value={value} placeholder="Input this attribute" onChange={handleChange} className="textbox"/>
-            <br></br>
-            <br></br>
-            <p>{inputsInfo[index]}</p>
-          </li>
-        ))
-        }
+          Object.entries(inputs).map(([category, value], index) => (
+            <li className="form" key={index}>
+              <h2>{category}</h2>
+              <input
+                type="text"
+                name={category}
+                value={value}
+                placeholder="Input this attribute"
+                onChange={handleChange}
+                className="textbox"
+              />
+              <br></br>
+              <br></br>
+              <p>{inputsInfo[index]}</p>
+            </li>
+          ))}
       </form>
-      <button type="submit" className="button" onClick={onSubmit}>Take that Pic!</button>
+      <button type="submit" className="button" onClick={onSubmit}>
+        Take that Pic!
+      </button>
     </div>
-  )
+  );
 }
 
 export default APIForm;
