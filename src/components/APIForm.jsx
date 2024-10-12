@@ -1,14 +1,18 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 
-const API_KEY = "3ac2fc85-f0e3-4fb4-b4fc-f3263aa9fdac";
+const API_KEY = '3ac2fc85-f0e3-4fb4-b4fc-f3263aa9fdac';
 
 function APIForm({ handleNewItem, banList, setBanList }) {
   
   const [artData, setArtData] = useState({});
   const [nextUrl, setNextUrl] = useState(null);
 
-  const fetchData = async () => {
+  const fetchData = async (retryCount = 0) => {
+    if (retryCount >= 5) {
+      console.error('Max retries reached');
+      return;
+    }
     const randomPage = Math.floor(Math.random() * 100) + 1;
     const url = `https://api.harvardartmuseums.org/object?apikey=${API_KEY}&size=1&page=${randomPage}`;
     try {
@@ -22,10 +26,10 @@ function APIForm({ handleNewItem, banList, setBanList }) {
           handleNewItem(result);
           setNextUrl(data.info.next || null);
         } else {
-          fetchData();
+          fetchData(retryCount + 1);
         }
       } else {
-        fetchData();
+        fetchData(retryCount + 1);
       }
     } catch (error) {
       console.error('Error fetching data:', error);
