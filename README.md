@@ -39,7 +39,8 @@ GIF created with ...
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+#Describe any challenges encountered while building the app.
+
 The main challenge was to implement the ban list feature. I had to make sure that the ban list is updated correctly and the API call is made again if the ban list is not empty.
 
 Additionally, the API key is exposed to the user, which is not ideal. However, I did not find a way to hide it in the client-side code as the API provider seems to have disabled CORS.
