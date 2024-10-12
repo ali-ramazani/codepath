@@ -1,35 +1,38 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import './index.css';  // Ensure this file has Tailwind directives
+import APIForm from './components/APIForm';
+import BanList from './components/BanList';
+import ExploredSoFar from './components/ExploredSoFar';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [banList, setBanList] = useState([]);
+  const [exploredItems, setExploredItems] = useState([]);
+
+  const addToBanList = (attribute) => {
+    setBanList([...banList, attribute]);
+  }
+
+  const handleNewItem = (item) => {
+    setExploredItems([...exploredItems, item]);
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="main-container w-screen h-screen grid grid-cols-12 gap-0">
+      <div className="explored-sofar-div col-span-3">
+        <ExploredSoFar exploredItems={exploredItems}/>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      <div className="api-form-div col-span-6 flex justify-center items-center">
+        <APIForm handleNewItem={handleNewItem} banList={banList} setBanList={setBanList} />
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+      <div className="ban-list-div col-span-3">
+        <BanList banList={banList} addToBanList={addToBanList}/>
+        
+      </div>
+    </div>
+  );
 }
 
-export default App
+export default App;
