@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './index.css';  // Ensure this file has Tailwind directives
+import './index.css';  
 import APIForm from './components/APIForm';
 import BanList from './components/BanList';
 import ExploredSoFar from './components/ExploredSoFar';
