@@ -6,6 +6,7 @@ function Summaries() {
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
   const [locationKey, setLocationKey] = useState(null);
+  const [cityName, setCityName] = useState(''); // New state for storing the city name
   const [weatherData, setWeatherData] = useState(null);
   const [alert, setAlert] = useState(null);
 
@@ -34,6 +35,7 @@ function Summaries() {
           }
           const locationData = await locationResponse.json();
           setLocationKey(locationData.Key);
+          setCityName(locationData.LocalizedName); // Set the city name from the response
 
           // Fetch the current weather conditions using the location key
           const weatherResponse = await fetch(
@@ -75,21 +77,41 @@ function Summaries() {
     fetchAlert();
   }, [locationKey]);
 
-  console.log(weatherData);
   return (
-    <div className="p-6 bg-gradient-to-r from-blue-500 to-purple-500 min-h-50 flex flex-col items-center">
+    <div style={{ backgroundColor: '#4b2e2e' }} className="p-6 min-h-50 flex flex-col items-center">
       <h1 className="text-5xl font-bold mb-6 text-white">Weather Summaries</h1>
       <p className="text-white mb-4">Based on your location...</p>
       <div className="flex flex-row gap-5">
         <div className="bg-white bg-opacity-80 rounded-lg shadow-lg p-5 w-72">
           {weatherData ? (
-            <div>
-              <h2 className="text-lg font-semibold mb-2">Current Weather</h2>
-              <p>Temperature: {weatherData.Temperature.Metric.Value}°C</p>
+            <div className="flex flex-col"> 
+              <h2 className="text-lg font-semibold mb-2">Current Weather in {cityName}</h2> {/* Display city name */}
+              <p>Temperature: {weatherData.Temperature.Imperial.Value}°F</p>
               <p>Weather: {weatherData.WeatherText}</p>
+              {weatherData.WeatherIcon && (
+                <img className="w-30 h-30"
+                  src={`https://developer.accuweather.com/sites/default/files/${String(weatherData.WeatherIcon).padStart(2, '0')}-s.png`}
+                  alt="Weather Icon"
+                />
+              )}
             </div>
           ) : (
             <p>Loading weather data...</p>
+          )}
+        </div>
+
+        <div className="bg-white bg-opacity-80 rounded-lg shadow-lg p-5 w-72">
+          {alert ? (
+            <div>
+              <h2 className="text-lg font-semibold mb-2">Weather Alerts</h2>
+              {alert.length > 0 ? (
+                <p>{alert[0].Headline.Text}</p>
+              ) : (
+                <p>No active alerts</p>
+              )}
+            </div>
+          ) : (
+            <p>Loading alerts...</p>
           )}
         </div>
 
