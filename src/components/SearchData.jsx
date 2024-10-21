@@ -54,7 +54,7 @@ function SearchData() {
   };
 
   return (
-    <div className="p-6" style={{ backgroundColor: '#333', minHeight: '50vh', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    <div className="p-6" style={{ backgroundColor: '#4b2e2e', minHeight: '30vh', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <h1 className="text-3xl font-bold text-white mb-6">Search Weather Data</h1>
       <div className="flex flex-col items-center">
         <input 

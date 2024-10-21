@@ -67,24 +67,25 @@ function TwentyClosestCountriesWeatherData() {
         backgroundColor: '#4b2e2e',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        height: '100vh', // Fixed height
-        overflowY: 'auto', // Allow scrolling if content overflows
+        overflowY: 'auto', 
       }}
     >
       <h1 className="text-3xl font-bold text-white mb-6">Weather in 20 Major Cities Across the World</h1>
-      <ul className="bg-white bg-opacity-80 rounded-lg shadow-lg p-5 w-72">
+      <div className="bg-white bg-opacity-80 rounded-lg shadow-lg p-5 w-full max-w-4xl">
         {weatherData.length > 0 ? (
-          weatherData.map((data, index) => (
-            <li key={index} className="mb-4">
-              <strong>{data.city}</strong>
-              <p>Temperature: {data.temperature}°F</p>
-              <p>Weather: {data.weatherText}</p>
-            </li>
-          ))
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {weatherData.map((data, index) => (
+              <div key={index} className="mb-4 p-4 bg-gray-100 rounded-lg shadow">
+                <strong>{data.city}</strong>
+                <p>Temperature: {data.temperature}°F</p>
+                <p>Weather: {data.weatherText}</p>
+              </div>
+            ))}
+          </div>
         ) : (
           <p>Loading weather data...</p>
         )}
-      </ul>
+      </div>
     </div>
   );
 }
