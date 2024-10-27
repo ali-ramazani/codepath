@@ -2,7 +2,9 @@ import { useEffect, useState } from 'react';
 import { fetchNewsArticles } from './services/newsService';
 import { analyzeSentiment } from './utils/sentimentanalyzer';
 import Hero from './components/Hero';
-import Dashboard from './components/Dashboard'; // Updated path
+import Dashboard from './components/Dashboard'; 
+import SentimentAnalysis from './components/SentimentAnalysis';
+
 
 const App = () => {
   const [newsData, setNewsData] = useState([]);
@@ -24,13 +26,8 @@ const App = () => {
     <div>
       {/* <Header /> */}
       <Hero />
-      <Dashboard /> {/* Dashboard included */}
-      {newsData.map((article, index) => (
-        <div key={index}>
-          <h2>{article.title}</h2>
-          <p>Sentiment Score: {article.sentimentScore}</p>
-        </div>
-      ))}
+      <Dashboard /> 
+      <SentimentAnalysis /> 
     </div>
   );
 };
