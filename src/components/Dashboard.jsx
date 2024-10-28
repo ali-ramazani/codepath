@@ -13,6 +13,7 @@ const Dashboard = () => {
   useEffect(() => {
     const getData = async () => {
       const data = await fetchCoinData();
+      console.log("Test", data);
       setCoins(Array.isArray(data) ? data : []);
     };
     getData();
