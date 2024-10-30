@@ -1,44 +1,95 @@
-import React from 'react';
-import { useState } from 'react';
-import { useParams } from 'react-router-dom';
-import './EditPost.css'
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import './EditPost.css';
+import { supabase } from '../Client';
 
+const EditPost = ({ data }) => {
+    const { id } = useParams();
+    const navigate = useNavigate();
+    const [post, setPost] = useState({ id: null, title: "", author: "", description: "" });
 
-const EditPost = ({data}) => {
+    // Fetch post data by ID when component mounts
+    useEffect(() => {
+        const fetchPost = async () => {
+            const { data, error } = await supabase
+                .from('Posts')
+                .select()
+                .eq('id', id)
+                .single();
 
-    const {id} = useParams();
-    const [post, setPost] = useState({id: null, title: "", author: "", description: ""});
+            if (error) {
+                console.error("Error fetching post:", error.message);
+            } else {
+                setPost(data);
+            }
+        };
+        fetchPost();
+    }, [id]);
 
     const handleChange = (event) => {
-        const {name, value} = event.target;
-        setPost( (prev) => {
-            return {
-                ...prev,
-                [name]:value,
-            }
-        })
-    }
+        const { name, value } = event.target;
+        setPost((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
+    };
+
+    const updatePost = async (event) => {
+        event.preventDefault(); 
+        const { error } = await supabase
+            .from('Posts')
+            .update({
+                title: post.title,
+                author: post.author,
+                description: post.description,
+            })
+            .eq('id', id);
+
+        if (error) {
+            console.error("Error updating post:", error.message);
+        } else {
+            navigate('/'); // Redirect after successful update
+        }
+    };
 
     return (
         <div>
-            <form>
-                <label for="title">Title</label> <br />
-                <input type="text" id="title" name="title" value={post.title} onChange={handleChange} /><br />
-                <br/>
+            <form onSubmit={updatePost}>
+                <label htmlFor="title">Title</label> <br />
+                <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    value={post.title || ""}
+                    onChange={handleChange}
+                /><br />
+                <br />
 
-                <label for="author">Author</label><br />
-                <input type="text" id="author" name="author" value={post.author} onChange={handleChange} /><br />
-                <br/>
+                <label htmlFor="author">Author</label><br />
+                <input
+                    type="text"
+                    id="author"
+                    name="author"
+                    value={post.author || ""}
+                    onChange={handleChange}
+                /><br />
+                <br />
 
-                <label for="description">Description</label><br />
-                <textarea rows="5" cols="50" id="description" value={post.description} onChange={handleChange} >
-                </textarea>
-                <br/>
+                <label htmlFor="description">Description</label><br />
+                <textarea
+                    rows="5"
+                    cols="50"
+                    id="description"
+                    name="description"
+                    value={post.description || ""}
+                    onChange={handleChange}
+                ></textarea>
+                <br />
                 <input type="submit" value="Submit" />
-                <button className="deleteButton">Delete</button>
+                <button type="button" className="deleteButton">Delete</button>
             </form>
         </div>
-    )
-}
+    );
+};
 
-export default EditPost
+export default EditPost;
