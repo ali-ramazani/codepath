@@ -38,11 +38,11 @@ function ViewTeam() {
           teammates.map(teammate => (
             <Card
               key={teammate.id}
-              id={teammate.id} // Pass id to Card for deletion
+              id={teammate.id} 
               name={teammate.name}
               skill={teammate.skill}
               bgcolor={teammate.bgcolor || '#ffffff'}
-              onDelete={() => deleteTeammate(teammate.id)} // Pass delete function as a prop
+              onDelete={() => deleteTeammate(teammate.id)} 
             />
           ))
         )}
