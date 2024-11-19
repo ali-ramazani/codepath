@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {supabase} from "../Client.js";
+import { supabase } from "../Client.js";
 import { useParams } from "react-router-dom";
 
 function PostPage() {
@@ -8,8 +8,12 @@ function PostPage() {
 
   useEffect(() => {
     const fetchPost = async () => {
-      const { data } = await supabase.from("posts").select().eq("id", id).single();
-      setPost(data);
+      const { data, error } = await supabase.from("posts").select().eq("id", id).single();
+      if (error) {
+        console.error("Error fetching post:", error);
+      } else {
+        setPost(data);
+      }
     };
     fetchPost();
   }, [id]);
@@ -40,7 +44,7 @@ function PostPage() {
           onClick={handleUpvote}
           className="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600"
         >
-          Upvote ({post.upvotes})
+          Upvote {post.upvotes}
         </button>
       </div>
     </div>
