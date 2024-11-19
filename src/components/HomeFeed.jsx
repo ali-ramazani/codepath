@@ -1,29 +1,34 @@
 import React, { useState, useEffect } from "react";
 import { supabase } from "../Client.js";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
+import { useSession } from "@supabase/auth-helpers-react";
 
 function HomeFeed() {
-  const [posts, setPosts] = useState([]); // State to store posts
-  const [orderBy, setOrderBy] = useState("created_at"); // State for sorting order
+  const [posts, setPosts] = useState([]); // State for posts
+  const [orderBy, setOrderBy] = useState("created_at"); // State for sorting
+  const session = useSession(); // Current user's session
 
-  // Fetch posts when component mounts or orderBy changes
   useEffect(() => {
+    if (!session) return; // Prevent fetching posts if not logged in
+
     const fetchPosts = async () => {
       const { data, error } = await supabase
         .from("posts")
-        .select("id, title, content, image_url, upvotes") // Explicitly select fields
+        .select("*")
         .order(orderBy, { ascending: false });
-
       if (error) {
-        console.error("Error fetching posts:", error);
-        return;
+        console.error("Error fetching posts:", error.message);
+      } else {
+        setPosts(data);
       }
-
-      setPosts(data);
     };
-
     fetchPosts();
-  }, [orderBy]);
+  }, [orderBy, session]);
+
+  // Redirect to login if user is not logged in
+  if (!session) {
+    return <Navigate to="/login" replace />;
+  }
 
   return (
     <div className="bg-gray-100 min-h-screen p-4">
@@ -56,7 +61,6 @@ function HomeFeed() {
               to={`/post/${post.id}`}
               className="bg-white p-4 shadow rounded-md hover:shadow-lg"
             >
-              {/* Display post image */}
               {post.image_url && (
                 <img
                   src={post.image_url}
@@ -64,13 +68,8 @@ function HomeFeed() {
                   className="w-full h-48 object-cover rounded-md mb-4"
                 />
               )}
-              {/* Display post title */}
               <h2 className="text-xl font-bold">{post.title}</h2>
-              {/* Display post content preview */}
-              <p className="text-gray-600">
-                {post.content.slice(0, 100)}...
-              </p>
-              {/* Display post upvotes */}
+              <p className="text-gray-600">{post.content.slice(0, 100)}...</p>
               <p className="text-sm text-gray-500">Upvotes: {post.upvotes}</p>
             </Link>
           ))}
