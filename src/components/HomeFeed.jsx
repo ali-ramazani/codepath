@@ -25,11 +25,34 @@ function HomeFeed() {
     fetchPosts();
   }, [orderBy, session]);
 
-  // Redirect to login if user is not logged in
+  // If the user is not logged in, show the background image with a login message
   if (!session) {
-    return <Navigate to="/login" replace />;
+    return (
+      <div
+        className="bg-cover bg-center bg-fixed min-h-screen flex items-center justify-center"
+        style={{
+          backgroundImage:
+            "url('https://wallpapercat.com/w/full/e/f/f/167573-2500x1466-desktop-hd-running-background-image.jpg')",
+        }}
+      >
+        <div className="bg-white bg-opacity-80 max-w-md mx-auto p-6 rounded-lg shadow-md text-center">
+          <h1 className="text-3xl font-bold mb-4">Welcome to Runner's Hub</h1>
+          <p className="text-gray-700 mb-6">
+            Connect with fellow running enthusiasts. Log in to explore posts,
+            share your stories, and join the community!
+          </p>
+          <Link
+            to="/login"
+            className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+          >
+            Log In
+          </Link>
+        </div>
+      </div>
+    );
   }
 
+  // If the user is logged in, display the posts feed
   return (
     <div className="bg-gray-100 min-h-screen p-4">
       <div className="max-w-4xl mx-auto">
