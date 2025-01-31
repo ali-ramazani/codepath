@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body {
+  background: url("https://www.trustedreviews.com/wp-content/uploads/sites/54/2022/04/Samsung-Galaxy-S22-Plus-screenshots-gallery-scaled.jpg") no-repeat center center fixed;
+}
+
+.whole-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  background-color: lightyellow;
+  max-width: 1000px;  /* Adjust max width here */
+  margin: 0 auto;  /* Center the whole page */
+  padding: 20px;  /* Add some padding if needed */
+}
+
+
+.form-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.form-div input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.form-div button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+.image-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  max-width: 800px;
+  min-width: 300px; /* Set a minimum width to avoid collapsing */
+  margin: 20px auto; /* Adjust margin for spacing */
+}
+
+.screenshot {
+  max-width: 100%;  /* Image will scale down to fit the container */
+  height: auto;  /* Keep aspect ratio */
+}
+
