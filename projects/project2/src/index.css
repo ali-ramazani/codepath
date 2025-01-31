@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.main-container {
+  @apply h-screen w-screen;
+  background-image: url("https://www.bankrate.com/2020/06/02131848/Meir-Jacob-Getty.jpeg?auto=webp&optimize=high&crop=16:9");
+  background-repeat: repeat;
+  background-size: 200px 150px;
+  background-position: 0 0;
+}
+
+.api-form-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  height: 100vh;
+  width: 600px;
+  height: 600px;
+  min-width: 1600px;
+  min-height: 1600px;
+  max-width: 1600px;
+  max-height: 1600px;
+}
+
+.api-form-content {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  min-height: 900px;
+}
+
+.api-form-content h1, .api-form-content h2, .api-form-content p {
+  color: #333;
+  font-weight: bold;
+}
+
+.api-form-content img {
+  margin-top: 10px;
+  max-width: 100%;
+  border-radius: 5px;
+  max-height: 100%;
+}
+
+.explored-sofar-overlay {
+  position: relative;
+  height: 100%;
+  max-height: 100vh;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+}
+
+.explored-sofar-content {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.explored-sofar-content h1, .explored-sofar-content li {
+  color: #222;
+  font-weight: bold;
+}
+
+.explored-sofar-content img {
+  margin-top: 10px;
+  max-width: 200px;
+  border-radius: 5px;
+}
+
+.banlist-overlay {
+  position: relative;
+  height: 100%;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.banlist-content h1, .banlist-content li {
+  color: #222;
+  font-weight: bold;
+}
+
+.banlist-content {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  height: 100%;
+}
+
+.banlist-content img {
+  margin-top: 10px;
+  max-width: 100px;
+  border-radius: 5px;
+}
